@@ -22,6 +22,13 @@ app.get("/", function(req, res) {
     res.render("index");
 })
 
+app.get("/articles", function(req, res) {
+    res.render("add_article", {
+        title: "Poop Magoo",
+        stuff: "dude bro"
+    });
+});
+
 
 app.listen(port, function() {
     console.log("Server started on port 8080...")
