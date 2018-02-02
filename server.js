@@ -57,6 +57,11 @@ app.get("/", function(req, res) {
   res.render("index");
 })
 
+// Loads the saved.handlebars file as the home file.
+app.get("/saved", function(req, res) {
+  res.render("saved");
+})
+
 
 // A GET route for scraping the Slashdot website
 app.get("/scrape", function(req, res) {
