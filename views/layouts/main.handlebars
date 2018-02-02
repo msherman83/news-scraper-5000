@@ -5,19 +5,47 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy"
 	 crossorigin="anonymous">
-	{{!-- <link rel="stylesheet" href="/assets/css/burger_style.css" type="text/css" /> --}}
 	<title>News Scraper 5000!</title>
 	<script src="https://code.jquery.com/jquery.js"></script>
-	{{!-- <script src="/assets/js/burgers.js"></script>
-	<link href="https://fonts.googleapis.com/css?family=Bitter" rel="stylesheet"> --}}
+	<link href="./style.css" type="text/css" rel="stylesheet">
+	</style>
 </head>
 
 <body>
-	<h1>test</h1>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">News Scraper 5000</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+		 aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item active">
+					<a class="nav-link" href="#">Home
+						<span class="sr-only">(current)</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">Saved Articles</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="http://localhost:3000/scrape">Scrape!</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div class="Container">
+		<div class="jumbotron">
+			<h1 class="display-4">Nerd News!</h1>
+			<p class="lead">News for nerds. Stuff that matters!</p>
+			<hr class="my-4">
+			<p>Pick an article below to save to your collection and add comments.</p>
+		</div>
+	</div>
 
 	{{{ body }}}
 
-    <a href="./articles">Articles</a>
+
 
 </body>
 
