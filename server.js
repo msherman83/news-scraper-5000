@@ -1,10 +1,8 @@
 // TODO
-// Figure out proper syntax to drill down to get title, link and summary.
 // setup a saved articles button.
 // Create a saved articles route and page.
 // modify notes to work on saved articles page and popup in a modal.
 // Add delete button on saved articles page.
-// Make scrape not go to a seperate route but just refresh the articles on the current page.
 // Finish styling
 // Push to Heroku and configure mongo per instructions.
 
@@ -91,7 +89,7 @@ app.get("/scrape", function(req, res) {
         });
     });
     // If we were able to successfully scrape and save an Article, send a message to the client
-    res.send("Scrape Complete");
+    res.redirect("/")
   });
 });
 
