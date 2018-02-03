@@ -30,7 +30,6 @@ var app = express();
 // Configure middleware
 // Use morgan logger for logging requests
 app.use(logger("dev"));
-
 // Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: false }));
 
@@ -45,12 +44,13 @@ app.use(express.static("public"));
 // By default mongoose uses callbacks for async queries, we're setting it to use promises (.then syntax) instead
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
-mongoose.connect("mongodb://localhost/week18Populater", {
+mongoose.connect("mongodb://localhost/newsscraper5000", {
   useMongoClient: true
 });
 
-
-// Routes
+// =======================================================
+// ROUTES
+// =======================================================
 
 // Loads the index.handlebars file as the home file.
 app.get("/", function(req, res) {
@@ -62,8 +62,7 @@ app.get("/saved", function(req, res) {
   res.render("saved");
 })
 
-
-// A GET route for scraping the Slashdot website
+// A GET route for scraping the echojs website
 app.get("/scrape", function(req, res) {
   // First, we grab the body of the html with request
   axios.get("http://www.slashdot.com").then(function(response) {
@@ -75,12 +74,9 @@ app.get("/scrape", function(req, res) {
       var result = {};
 
       // Add the text and href of every link, and save them as properties of the result object
-      result.title = $(this).children("a").text();
+      result.title = $(this).children().text();
 
       result.link = $(this).children().children().attr("href");
-
-      result.summary = $(this).children().attr("body");
-
       // Create a new Article using the `result` object built from scraping
       db.Article.create(result)
         .then(function(dbArticle) {
@@ -146,8 +142,6 @@ app.post("/articles/:id", function(req, res) {
       res.json(err);
     });
 });
-
-
 // Start the server
 app.listen(PORT, function() {
   console.log("App running on port " + PORT + "!");
