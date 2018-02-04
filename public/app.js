@@ -3,8 +3,37 @@ $.getJSON("/articles", function(data) {
   // For each one
   for (var i = 0; i < data.length; i++) {
     // Display the apropos information on the page
-    $("#articles").append("<p data-id='" + data[i]._id + "'>" + data[i].title + "<br />" + data[i].link + "<br>" + data[i].summary + "</p>");
+    $("#articles").append(
+      "<p data-id='" + data[i]._id + "'>" + 
+      "<span id='data-title'>" + data[i].title + "</span></p><button type='button' id='save-article' class='btn btn-primary'>Save Article</button> <br />" + 
+      "<span id='data-link'>" + data[i].link + "</span>" + "<br>" + 
+      "<span id='data-summary'>" + data[i].summary + "</span>");
   }
+});
+
+$(document).on("click", "#save-article", function() {
+
+
+  // Run a POST request to change the note, using what's entered in the inputs
+  $.ajax({
+    method: "POST",
+    url: "/saved-article",
+    data: {
+      // Value taken from title input
+      title: $("#data-title").val(),
+      // Value taken from note textarea
+      link: $("#data-link").val(),
+      summary: $("#data-summary").val()
+    }
+  })
+    // With that done
+    .done(function(data) {
+      // Log the response
+      console.log("Article Saved");
+      console.log(data);
+
+    });
+
 });
 
 

@@ -1,5 +1,4 @@
 // TODO
-// setup a saved articles button.
 // Create a saved articles route and page.
 // modify notes to work on saved articles page and popup in a modal.
 // Add delete button on saved articles page.
@@ -58,7 +57,21 @@ app.get("/", function(req, res) {
 // Loads the saved.handlebars file as the home file.
 app.get("/saved", function(req, res) {
   res.render("saved");
+
 })
+
+app.get("/saved-article", function(req,res) {
+  db.SavedArticle.find({})
+    .then(function(dbSavedArticle) {
+      // If we were able to successfully find Articles, send them back to the client
+      res.json(dbSavedArticle);
+    })
+    .catch(function(err) {
+      // If an error occurred, send it to the client
+      res.json(err);
+    });
+});
+
 
 // A GET route for scraping the echojs website
 app.get("/scrape", function(req, res) {
