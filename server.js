@@ -60,6 +60,10 @@ app.get("/saved", function(req, res) {
 
 })
 
+// ========================================
+// ROUTE NOT WORKING
+// ========================================
+
 app.post("/saved-article", function(req,res) {
   db.SavedArticle.insert({
     title: req.body.title,
@@ -77,6 +81,8 @@ app.post("/saved-article", function(req,res) {
     }
   })
 });
+
+
 
 
 // A GET route for scraping the echojs website
