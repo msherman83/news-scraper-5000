@@ -60,16 +60,22 @@ app.get("/saved", function(req, res) {
 
 })
 
-app.get("/saved-article", function(req,res) {
-  db.SavedArticle.find({})
-    .then(function(dbSavedArticle) {
-      // If we were able to successfully find Articles, send them back to the client
-      res.json(dbSavedArticle);
-    })
-    .catch(function(err) {
-      // If an error occurred, send it to the client
-      res.json(err);
-    });
+app.post("/saved-article", function(req,res) {
+  db.SavedArticle.insert({
+    title: req.body.title,
+    link: req.body.link,
+    summary: req.body.summary
+  },
+  function(err, inserted) {
+    if (err) {
+      // Log the error if one is encountered during the query
+      console.log(err);
+    }
+    else {
+      // Otherwise, log the inserted data
+      console.log(inserted);
+    }
+  })
 });
 
 
