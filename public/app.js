@@ -1,3 +1,5 @@
+// INSERT SCRAPED ARTICLE INTO INDEX PAGE
+
 // Grab the articles as a json
 $.getJSON("/articles", function(data) {
   // For each one
@@ -5,9 +7,25 @@ $.getJSON("/articles", function(data) {
     // Display the apropos information on the page
     $("#articles").append(
       "<p data-id='" + data[i]._id + "'>" + 
-      "<span id='data-title'>" + data[i].title + "</span></p><button type='button' id='save-article' class='btn btn-primary'>Save Article</button> <br />" + 
-      "<span id='data-link'>" + data[i].link + "</span>" + "<br>" + 
-      "<span id='data-summary'>" + data[i].summary + "</span>");
+      "<span class='data-title'>" + data[i].title + "</span></p><button type='button' class='btn btn-primary save-article'>Save Article</button> <br />" + 
+      "<span class='data-link'>" + data[i].link + "</span>" + "<br>" + 
+      "<span class='data-summary'>" + data[i].summary + "</span>");
+  }
+});
+
+
+// INSERT SAVED ARTICLE INTO SAVED PAGE
+
+// Grab the articles as a json
+$.getJSON("/saved-article", function(data) {
+  // For each one
+  for (var i = 0; i < data.length; i++) {
+    // Display the apropos information on the page
+    $("#saved-article").append(
+      "<p data-id='" + data[i]._id + "'>" + 
+      "<span class='data-title'>" + data[i].title + "</span></p><button type='button' class='btn btn-primary save-article'>Save Article</button> <br />" + 
+      "<span class='data-link'>" + data[i].link + "</span>" + "<br>" + 
+      "<span class='data-summary'>" + data[i].summary + "</span>");
   }
 });
 
@@ -15,19 +33,19 @@ $.getJSON("/articles", function(data) {
 // ARTICLE SAVE BUTTON
 // ========================================
 
-$(document).on("click", "#save-article", function() {
+
+$(document).on("click", ".save-article", function() {
 
 
-  // Run a POST request to change the note, using what's entered in the inputs
+  // Run a POST request to save an article
   $.ajax({
     method: "POST",
     url: "/saved-article",
     data: {
-      // Value taken from title input
-      title: $("#data-title").val(),
-      // Value taken from note textarea
-      link: $("#data-link").val(),
-      summary: $("#data-summary").val()
+      // Value from the HTML rendered on the page.
+      title: $(".data-title").text(),
+      link: $(".data-link").text(),
+      summary: $(".data-summary").text(),
     }
   })
     // With that done
