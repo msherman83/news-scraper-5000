@@ -1,5 +1,8 @@
-body { background-color: lightgreen }
-#wrapper {
+body { 
+  background-color: lightgreen 
+}
+
+/* #wrapper {
   width: 960px;
   margin-left: auto;
   margin-right: auto;
@@ -9,8 +12,8 @@ body { background-color: lightgreen }
   display: inline-block;
   overflow: auto;
   width: 60%;
-}
-#notes {
+} */
+/* #notes {
   float: right;
   width: 30%;
 }
@@ -26,4 +29,12 @@ input {
 textarea {
   height: 200px;
   font-size: 18px;
+} */
+
+.data-title {
+  font-size: 20px;
+}
+
+.card-text {
+  margin: 10px 10px 10px 10px;
 }
