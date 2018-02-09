@@ -129,12 +129,14 @@ $(document).on("click", ".add-note", function() {
     // With that done, add the note information to the page
     .done(function(data) {
       console.log(data);
-
+      debugger
       // MODAL POPUP
       $("#myModal").modal("show");
 
+      $("#saved-notes").append("This is a saved note");
+
       // The title of the article
-      $("#notes").append("<h2>" + data.title + "</h2>");
+      $("#notes").append("<h3>" + data.title + "</h3>");
       // An input to enter a new title
       $("#notes").append("<div class='form-group'><label for='noteTitle'>Note Title</label><input type='text' class='form-control' id='titleinput' name='title' ></div>");
       // A textarea to add a new note body
@@ -143,12 +145,12 @@ $(document).on("click", ".add-note", function() {
       $("#notes").append("<div> <button type='button' class='btn btn-primary data-id='" + data._id + "' id='savenote'>Save Note</button></div>");
 
       // If there's a note in the article
-      if (data.note) {
+      
         // Place the title of the note in the title input
-        $("#titleinput").val(data.note.title);
+        $("#titleinput").val(data.notes.title);
         // Place the body of the note in the body textarea
-        $("#bodyinput").val(data.note.body);
-      }
+        $("#bodyinput").val(data.notes.body);
+      
     });
 });
 

@@ -1,7 +1,6 @@
 // TODO
-// Create a saved articles route and page.
-// modify notes to work on saved articles page and popup in a modal.
-// Add delete button on saved articles page.
+// Add Saved Notes themselves to the modal.
+// Add delete notes option in modal
 // Finish styling
 // Push to Heroku and configure mongo per instructions.
 
@@ -183,7 +182,7 @@ app.post("/saved-article/:id", function (req, res) {
     });
 });
 
-// Route for grabbing a specific Article by id, populate it with it's note
+// Route for grabbing a specific Article by id and deleting
 app.delete("/saved-article/:id", function (req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
   db.SavedArticle.remove({ _id: req.params.id })
