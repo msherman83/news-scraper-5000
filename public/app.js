@@ -9,7 +9,7 @@ $.getJSON("/articles", function(data) {
       "<div class='card'>" +
       "<h3 class='card-header'>" +
       "<div data-id='" + data[i]._id + "'>" + 
-      "<a target='_blank' href=" + data[i].link + "><span class='data-title'>" + data[i].title + "</a></span><button type='button' class='btn btn-primary float-right save-article'>Save Article</button></h3>" +
+      "<a target='_blank' href=" + data[i].link + "><span class='data-title'>" + data[i].title + "</a></span><button type='button' class='btn btn-primary btn-sm float-right save-article'>Save Article</button></h3>" +
       "<div class='card-block'>" +
       "<p class='card-text data-summary'>" + data[i].summary + "</p>" +
       "</div>" +
@@ -43,7 +43,7 @@ $.getJSON("/saved-article", function(data) {
       "<div class='card'>" +
       "<h3 class='card-header'>" +
       "<div data-id='" + data[i]._id + "'>" + 
-      "<a target='_blank' href=" + data[i].link + "><span class='data-title'>" + data[i].title + "</a></span><button type='button' class='btn btn-primary float-right add-note'>Add Note</button><button type='button' class='btn btn-primary float-right delete-article'>Delete Article</button></h3>" +
+      "<a target='_blank' href=" + data[i].link + "><span class='data-title'>" + data[i].title + "</a></span><button type='button' class='btn btn-primary btn-sm float-right add-note'>Add Note</button><button type='button' class='btn btn-primary btn-sm float-right delete-article'>Delete Article</button></h3>" +
       "<div class='card-block'>" +
       "<p class='card-text data-summary'>" + data[i].summary + "</p>" +
       "</div>" +
@@ -84,6 +84,10 @@ $(document).on("click", ".save-article", function() {
 
 });
 
+// ========================================
+// NOTE MODAL TRIGGER
+// ========================================
+
 
 // Whenever someone clicks a p tag
 $(document).on("click", ".add-note", function() {
@@ -95,10 +99,6 @@ $(document).on("click", ".add-note", function() {
   // Save the id from the p tag
   var thisId = $(this).parent().attr("data-id")
 
-  var title = $(this).parent().text();
-  var link = $(this).parent().children().attr("href");
-  var summary = $(this).parent().parent().siblings()[0].innerText;
-
   // Now make an ajax call for the Article
   $.ajax({
     method: "GET",
@@ -107,6 +107,10 @@ $(document).on("click", ".add-note", function() {
     // With that done, add the note information to the page
     .done(function(data) {
       console.log(data);
+
+      // MODAL POPUP
+      $('#myModal').modal('show');
+
       // The title of the article
       $("#notes").append("<h2>" + data.title + "</h2>");
       // An input to enter a new title
@@ -169,7 +173,7 @@ $(document).on("click", "#savenote", function() {
   // Run a POST request to change the note, using what's entered in the inputs
   $.ajax({
     method: "POST",
-    url: "/articles/" + thisId,
+    url: "/saved-article/" + thisId,
     data: {
       // Value taken from title input
       title: $("#titleinput").val(),

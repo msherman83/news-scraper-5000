@@ -43,3 +43,7 @@ h1 {
 .card-text {
   margin: 10px 10px 10px 10px;
 }
+
+.delete-article {
+  padding-right: 8px;
+}
