@@ -85,6 +85,28 @@ $(document).on("click", ".save-article", function() {
 });
 
 // ========================================
+// SAVED ARTICLE DELETE BUTTON
+// ========================================
+
+$(document).on("click", ".delete-article", function() {
+
+  var thisId = $(this).parent().attr("data-id")
+
+  // Now make an ajax call for the Article to delete.
+  $.ajax({
+    method: "DELETE",
+    url: "/saved-article/" + thisId
+  })
+    // Console.log the article is deleted and reload the page.
+    .done(function(data) {
+      console.log("Article Deleted");
+      location.reload();
+
+
+    });
+});
+
+// ========================================
 // NOTE MODAL TRIGGER
 // ========================================
 
@@ -114,11 +136,11 @@ $(document).on("click", ".add-note", function() {
       // The title of the article
       $("#notes").append("<h2>" + data.title + "</h2>");
       // An input to enter a new title
-      $("#notes").append("<input id='titleinput' name='title' >");
+      $("#notes").append("<div class='form-group'><label for='noteTitle'>Note Title</label><input type='text' class='form-control' id='titleinput' name='title' ></div>");
       // A textarea to add a new note body
-      $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
+      $("#notes").append("<div class='form-group'><label for='noteBody'>Note</label><textarea class='form-control' id='bodyinput' name='body'></textarea> </div>");
       // A button to submit a new note, with the id of the article saved to it
-      $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+      $("#notes").append("<div> <button type='button' class='btn btn-primary data-id='" + data._id + "' id='savenote'>Save Note</button></div>");
 
       // If there's a note in the article
       if (data.note) {
