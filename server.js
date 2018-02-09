@@ -1,8 +1,9 @@
 // TODO
+// Figure out why saving notes to the DB is broke
 // Add Saved Notes themselves to the modal.
 // Add delete notes option in modal
 // Finish styling
-// Push to Heroku and configure mongo per instructions.
+
 
 
 var express = require("express");

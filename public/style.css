@@ -1,5 +1,6 @@
 body { 
-  background-color: lightgreen 
+  background-color: lightgreen;
+  font-family: 'Roboto Slab', serif; 
 }
 
 /* #wrapper {
