@@ -145,11 +145,12 @@ $(document).on("click", ".add-note", function() {
       $("#notes").append("<div> <button type='button' class='btn btn-primary data-id='" + data._id + "' id='savenote'>Save Note</button></div>");
 
       // If there's a note in the article
-      
+      if (data.note) { 
         // Place the title of the note in the title input
-        $("#titleinput").val(data.notes.title);
+        $("#titleinput").val(data.note.title);
         // Place the body of the note in the body textarea
-        $("#bodyinput").val(data.notes.body);
+        $("#bodyinput").val(data.note.body);
+      }
       
     });
 });
