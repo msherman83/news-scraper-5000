@@ -58,8 +58,10 @@ $.getJSON("/saved-article", function(data) {
 
 
 $(document).on("click", ".save-article", function() {
-debugger
-  var title = $(this).attr(".data-title");
+
+  var title = $(this).parent().text();
+  var link = $(this).parent().children().attr("href");
+  var summary = $(this).parent().parent().siblings()[0].innerText;
 
   // Run a POST request to save an article
   $.ajax({
@@ -67,9 +69,9 @@ debugger
     url: "/saved-article",
     data: {
       // Value from the HTML rendered on the page.
-      title: $(".data-title").text(),
-      link: $(".data-link").text(),
-      summary: $(".data-summary").text(),
+      title: title,
+      link: link,
+      summary: summary
     }
   })
     // With that done
@@ -85,15 +87,22 @@ debugger
 
 // Whenever someone clicks a p tag
 $(document).on("click", ".add-note", function() {
+
+
+
   // Empty the notes from the note section
   $("#notes").empty();
   // Save the id from the p tag
-  var thisId = $(this).attr("data-id");
+  var thisId = $(this).parent().attr("data-id")
+
+  var title = $(this).parent().text();
+  var link = $(this).parent().children().attr("href");
+  var summary = $(this).parent().parent().siblings()[0].innerText;
 
   // Now make an ajax call for the Article
   $.ajax({
     method: "GET",
-    url: "/saved-articles/" + thisId
+    url: "/saved-article/" + thisId
   })
     // With that done, add the note information to the page
     .done(function(data) {
