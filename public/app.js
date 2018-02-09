@@ -85,6 +85,28 @@ $(document).on("click", ".save-article", function() {
 });
 
 // ========================================
+// SAVED ARTICLE DELETE BUTTON
+// ========================================
+
+$(document).on("click", ".delete-article", function() {
+
+  var thisId = $(this).parent().attr("data-id")
+
+  // Now make an ajax call for the Article to delete.
+  $.ajax({
+    method: "DELETE",
+    url: "/saved-article/" + thisId
+  })
+    // Console.log the article is deleted and reload the page.
+    .done(function(data) {
+      console.log("Article Deleted");
+      location.reload();
+
+
+    });
+});
+
+// ========================================
 // NOTE MODAL TRIGGER
 // ========================================
 
