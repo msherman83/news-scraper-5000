@@ -109,7 +109,7 @@ $(document).on("click", ".add-note", function() {
       console.log(data);
 
       // MODAL POPUP
-      $('#myModal').modal('show');
+      $("#myModal").modal("show");
 
       // The title of the article
       $("#notes").append("<h2>" + data.title + "</h2>");
